@@ -1,7 +1,6 @@
 /*
-
   Because it's not a *cough* Brawn watch. :)
-
+	https://github.com/pebble-hacks/brains
  */
 
 #include <pebble.h>
@@ -93,7 +92,7 @@ void handle_init() {
   minute_hand_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_MINUTE_HAND);
   second_hand_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_SECOND_HAND);
 
-  center_circle_white_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CENTER_CIRCLE_WHITE);
+  //center_circle_white_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CENTER_CIRCLE_WHITE);
   center_circle_black_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CENTER_CIRCLE_BLACK);
 
   // Set up a layer for the static watch face background
@@ -104,8 +103,8 @@ void handle_init() {
 
   // Set up a layer for the hour hand
   hour_hand_image_container = rot_bitmap_layer_create(hour_hand_image);
-
-  rot_bitmap_set_compositing_mode(hour_hand_image_container, GCompOpClear);
+	
+  rot_bitmap_set_compositing_mode(hour_hand_image_container, GCompOpSet);
 
   rot_bitmap_set_src_ic(hour_hand_image_container, GPoint(4, 44));
 
@@ -115,7 +114,7 @@ void handle_init() {
   // Set up a layer for the minute hand
   minute_hand_image_container = rot_bitmap_layer_create(minute_hand_image);
 
-  rot_bitmap_set_compositing_mode(minute_hand_image_container, GCompOpClear);
+  rot_bitmap_set_compositing_mode(minute_hand_image_container, GCompOpSet);
 
   rot_bitmap_set_src_ic(minute_hand_image_container, GPoint(4, 66));
 
@@ -125,7 +124,7 @@ void handle_init() {
   // Set up a layer for the second hand
   second_hand_image_container = rot_bitmap_layer_create(second_hand_image);
 
-  rot_bitmap_set_compositing_mode(second_hand_image_container, GCompOpClear);
+  rot_bitmap_set_compositing_mode(second_hand_image_container, GCompOpSet);
 
   rot_bitmap_set_src_ic(second_hand_image_container, GPoint(4, 66));
 
@@ -145,16 +144,16 @@ void handle_init() {
   // to stuff around with working out the circle center etc.)
 
   // (144 = screen width, 168 = screen height)
-  center_circle_white_image_container = bitmap_layer_create(GRect((144/2) - (16/2), (168/2) - (16/2), 16, 16));
+  //center_circle_white_image_container = bitmap_layer_create(GRect((144/2) - (16/2), (168/2) - (16/2), 16, 16));
   center_circle_black_image_container = bitmap_layer_create(GRect((144/2) - (16/2), (168/2) - (16/2), 16, 16));
 
-  bitmap_layer_set_bitmap(center_circle_white_image_container, center_circle_white_image);
+  //bitmap_layer_set_bitmap(center_circle_white_image_container, center_circle_white_image);
   bitmap_layer_set_bitmap(center_circle_black_image_container, center_circle_black_image);
 
-  bitmap_layer_set_compositing_mode(center_circle_white_image_container, GCompOpOr);
-  bitmap_layer_set_compositing_mode(center_circle_black_image_container, GCompOpClear);
+  //bitmap_layer_set_compositing_mode(center_circle_white_image_container, GCompOpOr);
+  bitmap_layer_set_compositing_mode(center_circle_black_image_container, GCompOpSet);
 
-  layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(center_circle_white_image_container));
+  //layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(center_circle_white_image_container));
   layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(center_circle_black_image_container));
 
 
